@@ -1,7 +1,5 @@
 package com.github.yusufyilmazfr.podcast4j.factory
 
-import com.fasterxml.jackson.databind.DeserializationFeature
-import com.fasterxml.jackson.databind.ObjectMapper
 import com.github.yusufyilmazfr.podcast4j.config.Config
 import com.github.yusufyilmazfr.podcast4j.constant.Constant
 import com.github.yusufyilmazfr.podcast4j.service.applereplacement.Podcast4jAppleReplacementService
@@ -40,7 +38,6 @@ object Podcast4jServiceFactory {
     lateinit var appleReplacementService: Podcast4jAppleReplacementService
     lateinit var searchService: Podcast4jSearchService
     internal lateinit var config: Config
-    internal lateinit var objectMapper: ObjectMapper
     internal val gson: Gson by lazy {
         synchronized(this) {
             Gson()
@@ -70,12 +67,6 @@ object Podcast4jServiceFactory {
 
     fun with(config: Config): Podcast4jServiceFactory {
         this.config = config
-        if (config.objectMapper != null) {
-            objectMapper = config.objectMapper
-        } else {
-            objectMapper = ObjectMapper()
-            objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
-        }
         categoryService = Podcast4jCategoryServiceImpl
         statsService = Podcast4jStatsServiceImpl
         recentService = Podcast4jRecentServiceImpl

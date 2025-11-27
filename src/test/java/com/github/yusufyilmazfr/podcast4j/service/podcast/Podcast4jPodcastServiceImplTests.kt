@@ -1,11 +1,11 @@
 package com.github.yusufyilmazfr.podcast4j.service.podcast
 
 import com.github.yusufyilmazfr.podcast4j.arg.service.podcast.TrendPodcastsArg
-import com.github.yusufyilmazfr.podcast4j.constant.Constant.CODEFICTION_FEED_ID
-import com.github.yusufyilmazfr.podcast4j.constant.Constant.CODEFICTION_FEED_URL
-import com.github.yusufyilmazfr.podcast4j.constant.Constant.CODEFICTION_GUID_ID
-import com.github.yusufyilmazfr.podcast4j.constant.Constant.CODEFICTION_PODCAST_TITLE
-import com.github.yusufyilmazfr.podcast4j.constant.Constant.CODEFICTION_iTUNES_ID
+import com.github.yusufyilmazfr.podcast4j.constant.Constant.CODIFICATION_FEED_ID
+import com.github.yusufyilmazfr.podcast4j.constant.Constant.CODIFICATION_FEED_URL
+import com.github.yusufyilmazfr.podcast4j.constant.Constant.CODIFICATION_GUID_ID
+import com.github.yusufyilmazfr.podcast4j.constant.Constant.CODIFICATION_PODCAST_TITLE
+import com.github.yusufyilmazfr.podcast4j.constant.Constant.CODIFICATION_ITUNES_ID
 import com.github.yusufyilmazfr.podcast4j.constant.testConfig
 import com.github.yusufyilmazfr.podcast4j.entity.Podcast
 import com.github.yusufyilmazfr.podcast4j.enums.MediumType
@@ -22,12 +22,12 @@ class Podcast4jPodcastServiceImplTests {
         val podcastService = serviceFactory.podcastService
 
         // Actual
-        val podcast: Podcast? = podcastService.getPodcastByFeedId(CODEFICTION_FEED_ID)
+        val podcast: Podcast? = podcastService.getPodcastByFeedId(CODIFICATION_FEED_ID)
 
         // Assert
         assertNotNull(podcast)
-        assertEquals(CODEFICTION_PODCAST_TITLE, podcast?.title)
-        assertEquals(CODEFICTION_iTUNES_ID, podcast?.itunesId)
+        assertEquals(CODIFICATION_PODCAST_TITLE, podcast?.title)
+        assertEquals(CODIFICATION_ITUNES_ID, podcast?.itunesId)
     }
 
     @Test
@@ -36,13 +36,13 @@ class Podcast4jPodcastServiceImplTests {
         val podcastService = serviceFactory.podcastService
 
         // Actual
-        val podcast: Podcast? = podcastService.getPodcastByFeedURL(CODEFICTION_FEED_URL)
+        val podcast: Podcast? = podcastService.getPodcastByFeedURL(CODIFICATION_FEED_URL)
 
         // Assert
         assertNotNull(podcast)
-        assertEquals(CODEFICTION_PODCAST_TITLE, podcast?.title)
-        assertEquals(CODEFICTION_FEED_URL, podcast?.url)
-        assertEquals(CODEFICTION_iTUNES_ID, podcast?.itunesId)
+        assertEquals(CODIFICATION_PODCAST_TITLE, podcast?.title)
+        assertEquals(CODIFICATION_FEED_URL, podcast?.url)
+        assertEquals(CODIFICATION_ITUNES_ID, podcast?.itunesId)
     }
 
 
@@ -52,13 +52,13 @@ class Podcast4jPodcastServiceImplTests {
         val podcastService = serviceFactory.podcastService
 
         // Actual
-        val podcast: Podcast? = podcastService.getPodcastByGUID(CODEFICTION_GUID_ID)
+        val podcast: Podcast? = podcastService.getPodcastByGUID(CODIFICATION_GUID_ID)
 
         // Assert
         assertNotNull(podcast)
-        assertEquals(CODEFICTION_PODCAST_TITLE, podcast?.title)
-        assertEquals(CODEFICTION_FEED_URL, podcast?.url.toString())
-        assertEquals(CODEFICTION_iTUNES_ID, podcast?.itunesId)
+        assertEquals(CODIFICATION_PODCAST_TITLE, podcast?.title)
+        assertEquals(CODIFICATION_FEED_URL, podcast?.url.toString())
+        assertEquals(CODIFICATION_ITUNES_ID, podcast?.itunesId)
     }
 
 
@@ -68,13 +68,13 @@ class Podcast4jPodcastServiceImplTests {
         val podcastService = serviceFactory.podcastService
 
         // Actual
-        val podcast: Podcast? = podcastService.getPodcastByiTunesID(CODEFICTION_iTUNES_ID)
+        val podcast: Podcast? = podcastService.getPodcastByiTunesID(CODIFICATION_ITUNES_ID)
 
         // Assert
         assertNotNull(podcast)
-        assertEquals(CODEFICTION_PODCAST_TITLE, podcast?.title)
-        assertEquals(CODEFICTION_FEED_URL, podcast?.url.toString())
-        assertEquals(CODEFICTION_iTUNES_ID, podcast?.itunesId)
+        assertEquals(CODIFICATION_PODCAST_TITLE, podcast?.title)
+        assertEquals(CODIFICATION_FEED_URL, podcast?.url.toString())
+        assertEquals(CODIFICATION_ITUNES_ID, podcast?.itunesId)
     }
 
 

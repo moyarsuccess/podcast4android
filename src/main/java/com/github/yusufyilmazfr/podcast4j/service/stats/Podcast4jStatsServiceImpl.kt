@@ -3,7 +3,7 @@ package com.github.yusufyilmazfr.podcast4j.service.stats
 import com.github.yusufyilmazfr.podcast4j.constant.Constant.BASE_API_V1_URL
 import com.github.yusufyilmazfr.podcast4j.entity.Stats
 import com.github.yusufyilmazfr.podcast4j.factory.Podcast4jServiceFactory.config
-import com.github.yusufyilmazfr.podcast4j.factory.Podcast4jServiceFactory.objectMapper
+import com.github.yusufyilmazfr.podcast4j.factory.Podcast4jServiceFactory.gson
 import com.github.yusufyilmazfr.podcast4j.factory.Podcast4jServiceFactory.okHttpClient
 import com.github.yusufyilmazfr.podcast4j.response.StatsResponse
 import com.github.yusufyilmazfr.podcast4j.util.HttpRequestUtil
@@ -17,7 +17,7 @@ internal object Podcast4jStatsServiceImpl : Podcast4jStatsService {
             .build()
 
         return okHttpClient.newCall(request).execute().use { response ->
-            objectMapper.readValue(response.body?.string(), StatsResponse::class.java).stats
+            gson.fromJson(response.body?.string(), StatsResponse::class.java).stats
         }
     }
 }

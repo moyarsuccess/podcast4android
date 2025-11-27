@@ -9,7 +9,7 @@ import com.github.yusufyilmazfr.podcast4j.entity.Feed
 import com.github.yusufyilmazfr.podcast4j.entity.NewFeed
 import com.github.yusufyilmazfr.podcast4j.entity.SoundBite
 import com.github.yusufyilmazfr.podcast4j.factory.Podcast4jServiceFactory.config
-import com.github.yusufyilmazfr.podcast4j.factory.Podcast4jServiceFactory.objectMapper
+import com.github.yusufyilmazfr.podcast4j.factory.Podcast4jServiceFactory.gson
 import com.github.yusufyilmazfr.podcast4j.factory.Podcast4jServiceFactory.okHttpClient
 import com.github.yusufyilmazfr.podcast4j.response.EpisodesResponse
 import com.github.yusufyilmazfr.podcast4j.response.FeedsResponse
@@ -29,7 +29,7 @@ internal object Podcast4jRecentServiceImpl : Podcast4jRecentService {
             .build()
 
         return okHttpClient.newCall(request).execute().use { response ->
-            objectMapper.readValue(response.body?.string(), FeedsResponse::class.java).feeds
+            gson.fromJson(response.body?.string(), FeedsResponse::class.java).feeds
                 ?: emptyList()
         }
     }
@@ -41,7 +41,7 @@ internal object Podcast4jRecentServiceImpl : Podcast4jRecentService {
             .build()
 
         return okHttpClient.newCall(request).execute().use { response ->
-            objectMapper.readValue(response.body?.string(), NewFeedsResponse::class.java).feeds
+            gson.fromJson(response.body?.string(), NewFeedsResponse::class.java).feeds
                 ?: emptyList()
         }
     }
@@ -52,7 +52,7 @@ internal object Podcast4jRecentServiceImpl : Podcast4jRecentService {
             .build()
 
         return okHttpClient.newCall(request).execute().use { response ->
-            objectMapper.readValue(
+            gson.fromJson(
                 response.body?.string(),
                 SoundBiteResponse::class.java
             ).soundBites ?: emptyList()
@@ -66,7 +66,7 @@ internal object Podcast4jRecentServiceImpl : Podcast4jRecentService {
             .build()
 
         return okHttpClient.newCall(request).execute().use { response ->
-            objectMapper.readValue(
+            gson.fromJson(
                 response.body?.string(),
                 EpisodesResponse::class.java
             ).episodes ?: emptyList()

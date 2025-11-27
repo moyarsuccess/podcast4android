@@ -2,8 +2,8 @@ package com.github.yusufyilmazfr.podcast4j.service.search
 
 import com.github.yusufyilmazfr.podcast4j.arg.service.search.SearchPodcastsByTermArg
 import com.github.yusufyilmazfr.podcast4j.arg.service.search.SearchPodcastsByTitleArg
-import com.github.yusufyilmazfr.podcast4j.constant.Constant.CODEFICTION_PODCAST_TITLE
-import com.github.yusufyilmazfr.podcast4j.constant.Constant.CODEFICTION_iTUNES_ID
+import com.github.yusufyilmazfr.podcast4j.constant.Constant.CODIFICATION_PODCAST_TITLE
+import com.github.yusufyilmazfr.podcast4j.constant.Constant.CODIFICATION_ITUNES_ID
 import com.github.yusufyilmazfr.podcast4j.constant.testConfig
 import com.github.yusufyilmazfr.podcast4j.factory.Podcast4jServiceFactory
 import org.junit.Assert.assertEquals
@@ -19,7 +19,7 @@ class Podcast4jSearchServiceImplTests {
         val searchService = serviceFactory.searchService
 
         val arg = SearchPodcastsByTermArg(
-            q = CODEFICTION_PODCAST_TITLE,
+            q = CODIFICATION_PODCAST_TITLE,
         )
 
         // Actual
@@ -27,8 +27,8 @@ class Podcast4jSearchServiceImplTests {
 
         // Assert
         assertNotNull(podcasts)
-        assertEquals(CODEFICTION_PODCAST_TITLE, podcasts[0].title)
-        assertEquals(CODEFICTION_iTUNES_ID, podcasts[0].itunesId)
+        assertEquals(CODIFICATION_PODCAST_TITLE, podcasts[0].title)
+        assertEquals(CODIFICATION_ITUNES_ID, podcasts[0].itunesId)
     }
 
     @Test
@@ -37,7 +37,7 @@ class Podcast4jSearchServiceImplTests {
         val searchService = serviceFactory.searchService
 
         val arg = SearchPodcastsByTitleArg(
-            q = CODEFICTION_PODCAST_TITLE,
+            q = CODIFICATION_PODCAST_TITLE,
             similar = java.lang.Boolean.TRUE,
         )
 
@@ -46,7 +46,7 @@ class Podcast4jSearchServiceImplTests {
 
         // Assert
         assertNotNull(podcasts)
-        assertEquals(CODEFICTION_PODCAST_TITLE, podcasts[0].title)
-        assertEquals(CODEFICTION_iTUNES_ID, podcasts[0].itunesId)
+        assertEquals(CODIFICATION_PODCAST_TITLE, podcasts[0].title)
+        assertEquals(CODIFICATION_ITUNES_ID, podcasts[0].itunesId)
     }
 }

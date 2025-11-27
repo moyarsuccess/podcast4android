@@ -7,7 +7,7 @@ import com.github.yusufyilmazfr.podcast4j.entity.Podcast
 import com.github.yusufyilmazfr.podcast4j.entity.TrendPodcast
 import com.github.yusufyilmazfr.podcast4j.enums.MediumType
 import com.github.yusufyilmazfr.podcast4j.factory.Podcast4jServiceFactory.config
-import com.github.yusufyilmazfr.podcast4j.factory.Podcast4jServiceFactory.objectMapper
+import com.github.yusufyilmazfr.podcast4j.factory.Podcast4jServiceFactory.gson
 import com.github.yusufyilmazfr.podcast4j.factory.Podcast4jServiceFactory.okHttpClient
 import com.github.yusufyilmazfr.podcast4j.response.*
 import com.github.yusufyilmazfr.podcast4j.util.HttpRequestUtil
@@ -22,7 +22,7 @@ internal object Podcast4jPodcastServiceImpl : Podcast4jPodcastService {
             .build()
 
         return okHttpClient.newCall(request).execute().use { response ->
-            objectMapper.readValue(
+            gson.fromJson(
                 response.body?.string(),
                 PodcastResponse::class.java
             ).podcast
@@ -35,7 +35,7 @@ internal object Podcast4jPodcastServiceImpl : Podcast4jPodcastService {
             .build()
 
         return okHttpClient.newCall(request).execute().use { response ->
-            objectMapper.readValue(response.body?.string(), PodcastResponse::class.java).podcast
+            gson.fromJson(response.body?.string(), PodcastResponse::class.java).podcast
         }
     }
 
@@ -45,7 +45,7 @@ internal object Podcast4jPodcastServiceImpl : Podcast4jPodcastService {
             .build()
 
         return okHttpClient.newCall(request).execute().use { response ->
-            objectMapper.readValue(response.body?.string(), PodcastResponse::class.java).podcast
+            gson.fromJson(response.body?.string(), PodcastResponse::class.java).podcast
         }
     }
 
@@ -53,9 +53,10 @@ internal object Podcast4jPodcastServiceImpl : Podcast4jPodcastService {
         val request = HttpRequestUtil.with(config)
             .url("$BASE_API_V1_URL/podcasts/byitunesid?id=$iTunesId")
             .build()
-
         return okHttpClient.newCall(request).execute().use { response ->
-            objectMapper.readValue(response.body?.string(), PodcastResponse::class.java).podcast
+            val res = response.body?.string()
+            println("WTF - $res")
+            gson.fromJson(res, PodcastResponse::class.java).podcast
         }
     }
 
@@ -65,7 +66,7 @@ internal object Podcast4jPodcastServiceImpl : Podcast4jPodcastService {
             .build()
 
         return okHttpClient.newCall(request).execute().use { response ->
-            objectMapper.readValue(
+            gson.fromJson(
                 response.body?.string(),
                 PodcastsByTagResponse::class.java
             ).podcasts ?: emptyList()
@@ -78,7 +79,7 @@ internal object Podcast4jPodcastServiceImpl : Podcast4jPodcastService {
             .build()
 
         return okHttpClient.newCall(request).execute().use { response ->
-            objectMapper.readValue(
+            gson.fromJson(
                 response.body?.string(),
                 PodcastsByMediumResponse::class.java
             ).podcasts ?: emptyList()
@@ -92,7 +93,7 @@ internal object Podcast4jPodcastServiceImpl : Podcast4jPodcastService {
             .build()
 
         return okHttpClient.newCall(request).execute().use { response ->
-            objectMapper.readValue(
+            gson.fromJson(
                 response.body?.string(),
                 TrendPodcastsResponse::class.java
             ).trendPodcasts ?: emptyList()
@@ -105,7 +106,7 @@ internal object Podcast4jPodcastServiceImpl : Podcast4jPodcastService {
             .build()
 
         return okHttpClient.newCall(request).execute().use { response ->
-            objectMapper.readValue(
+            gson.fromJson(
                 response.body?.string(),
                 DeadPodcastsResponse::class.java
             ).deadPodcasts ?: emptyList()

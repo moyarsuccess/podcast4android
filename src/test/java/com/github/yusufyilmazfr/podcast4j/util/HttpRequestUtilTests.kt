@@ -1,6 +1,7 @@
 package com.github.yusufyilmazfr.podcast4j.util
 
 import org.junit.Assert
+import org.junit.Assert.assertEquals
 import org.junit.Test
 import java.util.Map
 
@@ -14,24 +15,24 @@ class HttpRequestUtilTests {
         val actualQueryParams = HttpRequestUtil.toQueryParams(map)
 
         // Assert
-        Assert.assertEquals("", actualQueryParams)
+        assertEquals("", actualQueryParams)
     }
 
     @Test
     fun toQueryParams_returnNonNullQueryParams_whenParametersHaveNullValue() {
         // Arrange
         val map = HashMap<String, Any?>()
-        map["firstName"] = "yusuf"
-        map["lastName"] = "yilmaz"
-        map["userName"] = "yusufyilmazfr"
+        map["firstName"] = "Moyar"
+        map["lastName"] = "Moradyar"
+        map["userName"] = "moyarsuccess"
         map["age"] = null
 
-        val expectedQueryParameters = "firstName=yusuf&lastName=yilmaz&userName=yusufyilmazfr"
+        val expectedQueryParameters = "firstName=Moyar&lastName=Moradyar&userName=moyarsuccess"
 
         // Actual
         val actualQueryParams = HttpRequestUtil.toQueryParams(map)
 
         // Assert
-        Assert.assertEquals(expectedQueryParameters, actualQueryParams)
+        assertEquals(expectedQueryParameters, actualQueryParams)
     }
 }

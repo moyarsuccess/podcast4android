@@ -10,8 +10,5 @@
         <module name="podcast4j" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="podcast4j" target="11" />
-    </bytecodeTargetLevel>
   </component>
 </project>

@@ -1,9 +1,8 @@
 package com.github.yusufyilmazfr.podcast4j.response
 
-import com.fasterxml.jackson.annotation.JsonProperty
 import com.github.yusufyilmazfr.podcast4j.entity.DeadPodcast
+import com.google.gson.annotations.SerializedName
 
 data class DeadPodcastsResponse(
-    @field:JsonProperty("feeds")
-    val deadPodcasts: List<DeadPodcast>? = null
+    @SerializedName("feeds") val deadPodcasts: List<DeadPodcast>? = null
 ) : BaseResponse()

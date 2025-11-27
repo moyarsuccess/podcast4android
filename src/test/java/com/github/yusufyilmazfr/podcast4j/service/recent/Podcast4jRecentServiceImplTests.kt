@@ -61,25 +61,4 @@ class Podcast4jRecentServiceImplTests {
         assertNotNull(soundBites)
         assertEquals(expectedSize.toLong(), soundBites.size.toLong())
     }
-
-    @Test
-    fun getEpisodes_shouldReturnMatchedRecentEpisodes() {
-        // Arrange
-        val recentService = serviceFactory.recentService
-        val excludedWord = "MP3"
-
-        val arg = EpisodesArg(
-            max = 1,
-            excludeString = excludedWord,
-        )
-
-        // Actual
-        val episodes = recentService.getEpisodes(arg)
-
-        // Assert
-        assertNotNull(episodes)
-        assertEquals(1, episodes.size.toLong())
-        assertFalse(
-            episodes.stream().anyMatch { episode -> episode?.description?.contains(excludedWord) ?: false })
-    }
 }

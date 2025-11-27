@@ -1,14 +1,10 @@
 package com.github.yusufyilmazfr.podcast4j.response
 
-import com.fasterxml.jackson.annotation.JsonProperty
 import com.github.yusufyilmazfr.podcast4j.entity.TrendPodcast
-import lombok.Getter
-import lombok.Setter
+import com.google.gson.annotations.SerializedName
 
-@Getter
-@Setter
 class TrendPodcastsResponse(
-    @field:JsonProperty("feeds")
+    @SerializedName("feeds")
     val trendPodcasts: MutableList<TrendPodcast>? = null,
     val max: Int? = null,
     val since: Long? = null

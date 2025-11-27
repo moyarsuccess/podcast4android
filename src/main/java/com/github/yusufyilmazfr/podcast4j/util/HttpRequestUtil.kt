@@ -26,15 +26,16 @@ internal object HttpRequestUtil {
 
     fun toQueryParams(data: Map<String, Any?>): String {
         val builder = StringBuilder()
-        for (entry in data.entries) {
-            if (builder.isNotEmpty()) {
-                builder.append("&")
+        data.entries.forEach {
+            if (it.value != null) {
+                if (builder.isNotEmpty()) {
+                    builder.append("&")
+                }
+                builder.append(URLEncoder.encode(it.key, StandardCharsets.UTF_8))
+                builder.append("=")
+                builder.append(URLEncoder.encode(it.value.toString(), StandardCharsets.UTF_8))
             }
-            builder.append(URLEncoder.encode(entry.key, StandardCharsets.UTF_8))
-            builder.append("=")
-            builder.append(URLEncoder.encode(entry.value.toString(), StandardCharsets.UTF_8))
         }
-
         return builder.toString()
     }
 }

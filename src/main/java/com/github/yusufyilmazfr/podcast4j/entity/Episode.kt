@@ -1,17 +1,15 @@
 package com.github.yusufyilmazfr.podcast4j.entity
 
-import java.net.URL
-
 data class Episode(
     val id: Long? = null,
     val title: String? = null,
-    val link: URL? = null,
+    val link: String? = null,
     val description: String? = null,
     val guid: String? = null,
     val datePublished: Long? = null,
     val datePublishedPretty: String? = null,
     val dateCrawled: Long? = null,
-    val enclosureUrl: URL? = null,
+    val enclosureUrl: String? = null,
     val enclosureType: String? = null,
     val enclosureLength: Int? = null,
     val duration: Int? = null,
@@ -19,10 +17,10 @@ data class Episode(
     val episode: Int? = null,
     val episodeType: String? = null,
     val season: Int? = null,
-    val image: URL? = null,
+    val image: String? = null,
     val imageUrlHash: String? = null,
     val feedItunesId: Long? = null,
-    val feedImage: URL? = null,
+    val feedImage: String? = null,
     val feedImageUrlHash: String? = null,
     val feedId: Int? = null,
     val podcastGuid: String? = null,
@@ -32,8 +30,8 @@ data class Episode(
     val feedLanguage: String? = null,
     val feedDead: Int? = null,
     val feedDuplicateOf: String? = null,
-    val chaptersUrl: URL? = null,
-    val transcriptUrl: URL? = null,
+    val chaptersUrl: String? = null,
+    val transcriptUrl: String? = null,
     val value: Value? = null,
     val persons: MutableList<Person?>? = null,
     val transcripts: MutableList<Transcript?>? = null,

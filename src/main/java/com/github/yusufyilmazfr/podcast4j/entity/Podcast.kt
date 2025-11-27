@@ -1,5 +1,11 @@
 package com.github.yusufyilmazfr.podcast4j.entity
 
+import com.google.gson.JsonDeserializationContext
+import com.google.gson.JsonDeserializer
+import com.google.gson.JsonElement
+import com.google.gson.annotations.JsonAdapter
+import java.lang.reflect.Type
+
 data class Podcast(
     /**
      * The internal PodcastIndex.org Feed ID.
@@ -115,7 +121,8 @@ data class Podcast(
     /**
      * Is feed marked as explicit
      */
-    val explicit: Boolean = false,
+    @JsonAdapter(ExplicitAdapter::class)
+    val explicit: Int? = null,
 
     /**
      * Allowed: 0┃1
@@ -202,3 +209,20 @@ data class Podcast(
 
     val priority: String? = null,
 )
+
+class ExplicitAdapter : JsonDeserializer<Int> {
+    override fun deserialize(
+        json: JsonElement,
+        typeOfT: Type,
+        context: JsonDeserializationContext
+    ): Int {
+        val primitive = json.asJsonPrimitive
+
+        return when {
+            primitive.isNumber -> primitive.asInt
+            primitive.isBoolean -> if (primitive.asBoolean) 1 else 0
+            primitive.isString -> primitive.asString.toIntOrNull() ?: 0
+            else -> 0
+        }
+    }
+}

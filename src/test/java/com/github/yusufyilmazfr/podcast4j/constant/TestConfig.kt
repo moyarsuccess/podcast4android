@@ -4,8 +4,8 @@ import com.github.yusufyilmazfr.podcast4j.config.Config
 
 val testConfig: Config
     get() = Config(
-        secret = "HQT8wkdbb5KVMGur$\$TmYvg#W6Dgph4nvQkyhV#f",
-        authKey = "CJSXRHDXXTFGKK3DYDNB",
-        userAgentValue = "SuperPodcastPlayer/1.8",
+        secret = "qx$" + "4Qr5mCb4aVfVc$" + "cNsq6mUEhEWjsBwt3vVxNNj",
+        authKey = "V7YV7YVH6QUE6CGDCZRJ",
+        userAgentValue = "FreePodcast",
         timeOutValue = 10000,
     )

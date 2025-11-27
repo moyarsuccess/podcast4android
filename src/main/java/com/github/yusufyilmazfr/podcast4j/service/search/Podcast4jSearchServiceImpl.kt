@@ -5,7 +5,7 @@ import com.github.yusufyilmazfr.podcast4j.arg.service.search.SearchPodcastsByTit
 import com.github.yusufyilmazfr.podcast4j.constant.Constant.BASE_API_V1_URL
 import com.github.yusufyilmazfr.podcast4j.entity.Podcast
 import com.github.yusufyilmazfr.podcast4j.factory.Podcast4jServiceFactory.config
-import com.github.yusufyilmazfr.podcast4j.factory.Podcast4jServiceFactory.objectMapper
+import com.github.yusufyilmazfr.podcast4j.factory.Podcast4jServiceFactory.gson
 import com.github.yusufyilmazfr.podcast4j.factory.Podcast4jServiceFactory.okHttpClient
 import com.github.yusufyilmazfr.podcast4j.response.SearchPodcastsResponse
 import com.github.yusufyilmazfr.podcast4j.util.HttpRequestUtil.toQueryParams
@@ -20,7 +20,7 @@ internal object Podcast4jSearchServiceImpl : Podcast4jSearchService {
             .build()
 
         okHttpClient.newCall(request).execute().use { response ->
-            return objectMapper.readValue(response.body?.string(), SearchPodcastsResponse::class.java).podcasts
+            return gson.fromJson(response.body?.string(), SearchPodcastsResponse::class.java).podcasts
                 ?: emptyList()
         }
     }
@@ -33,7 +33,7 @@ internal object Podcast4jSearchServiceImpl : Podcast4jSearchService {
             .build()
 
         return okHttpClient.newCall(request).execute().use { response ->
-            objectMapper.readValue(response.body?.string(), SearchPodcastsResponse::class.java).podcasts ?: emptyList()
+            gson.fromJson(response.body?.string(), SearchPodcastsResponse::class.java).podcasts ?: emptyList()
         }
     }
 }

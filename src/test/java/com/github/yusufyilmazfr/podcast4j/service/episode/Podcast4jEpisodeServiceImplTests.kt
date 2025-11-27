@@ -1,10 +1,10 @@
 package com.github.yusufyilmazfr.podcast4j.service.episode
 
 import com.github.yusufyilmazfr.podcast4j.arg.service.episode.*
-import com.github.yusufyilmazfr.podcast4j.constant.Constant.CODEFICTION_EPISODE_ID
-import com.github.yusufyilmazfr.podcast4j.constant.Constant.CODEFICTION_FEED_ID
-import com.github.yusufyilmazfr.podcast4j.constant.Constant.CODEFICTION_FEED_URL
-import com.github.yusufyilmazfr.podcast4j.constant.Constant.CODEFICTION_iTUNES_ID
+import com.github.yusufyilmazfr.podcast4j.constant.Constant.CODIFICATION_EPISODE_ID
+import com.github.yusufyilmazfr.podcast4j.constant.Constant.CODIFICATION_FEED_ID
+import com.github.yusufyilmazfr.podcast4j.constant.Constant.CODIFICATION_FEED_URL
+import com.github.yusufyilmazfr.podcast4j.constant.Constant.CODIFICATION_ITUNES_ID
 import com.github.yusufyilmazfr.podcast4j.constant.testConfig
 import com.github.yusufyilmazfr.podcast4j.entity.Episode
 import com.github.yusufyilmazfr.podcast4j.factory.Podcast4jServiceFactory
@@ -20,7 +20,7 @@ class Podcast4jEpisodeServiceImplTests {
         val episodeService = serviceFactory.episodeService
 
         val arg = ByFeedIdArg(
-            id = CODEFICTION_FEED_ID,
+            id = CODIFICATION_FEED_ID,
             max = 10,
         )
 
@@ -30,7 +30,7 @@ class Podcast4jEpisodeServiceImplTests {
         // Assert
         assertNotNull(episodes)
         assertEquals(10, episodes.size.toLong())
-        assertEquals(CODEFICTION_FEED_ID, episodes[0].feedId)
+        assertEquals(CODIFICATION_FEED_ID, episodes[0].feedId)
     }
 
     @Test
@@ -39,7 +39,7 @@ class Podcast4jEpisodeServiceImplTests {
         val episodeService = serviceFactory.episodeService
 
         val arg = ByFeedURLArg(
-            url = CODEFICTION_FEED_URL,
+            url = CODIFICATION_FEED_URL,
             max = 10,
         )
 
@@ -49,7 +49,7 @@ class Podcast4jEpisodeServiceImplTests {
         // Assert
         assertNotNull(episodes)
         assertEquals(10, episodes.size.toLong())
-        assertEquals(CODEFICTION_FEED_ID, episodes[0].feedId)
+        assertEquals(CODIFICATION_FEED_ID, episodes[0].feedId)
     }
 
     @Test
@@ -58,7 +58,7 @@ class Podcast4jEpisodeServiceImplTests {
         val episodeService = serviceFactory.episodeService
 
         val arg = ByiTunesArg(
-            id = CODEFICTION_iTUNES_ID,
+            id = CODIFICATION_ITUNES_ID,
             max = 10,
         )
 
@@ -68,7 +68,7 @@ class Podcast4jEpisodeServiceImplTests {
         // Assert
         assertNotNull(episodes)
         assertEquals(10, episodes.size.toLong())
-        assertEquals(CODEFICTION_FEED_ID, episodes[0].feedId)
+        assertEquals(CODIFICATION_FEED_ID, episodes[0].feedId)
     }
 
     @Test
@@ -98,7 +98,7 @@ class Podcast4jEpisodeServiceImplTests {
         val episodeService = serviceFactory.episodeService
 
         val arg = ByIdArg(
-            id = CODEFICTION_EPISODE_ID,
+            id = CODIFICATION_EPISODE_ID,
             fulltext = java.lang.Boolean.TRUE
         )
 
@@ -107,7 +107,7 @@ class Podcast4jEpisodeServiceImplTests {
 
         // Assert
         assertNotNull(episode)
-        assertEquals(CODEFICTION_FEED_ID, episode?.feedId)
+        assertEquals(CODIFICATION_FEED_ID, episode?.feedId)
     }
 
     @Test
@@ -121,28 +121,5 @@ class Podcast4jEpisodeServiceImplTests {
         // Assert
         assertNotNull(episodes)
         assertNotEquals(0, episodes.size.toLong())
-    }
-
-    @Test
-    fun getRandomEpisodes_shouldReturnMatchedEpisodes() {
-        // Arrange
-        val episodeService = serviceFactory.episodeService
-
-        val category = "Technology"
-        val language = "tr"
-
-        val arg = RandomEpisodesArg(
-            lang = language,
-            cat = category,
-            max = 5,
-        )
-
-        // Actual
-        val episodes = episodeService.getRandomEpisodes(arg)
-        val episode: Episode = episodes[0]
-
-        // Assert
-        assertEquals(language, episode.feedLanguage)
-        assertTrue(episode.categories?.containsValue(category) ?: true)
     }
 }

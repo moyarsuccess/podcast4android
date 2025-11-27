@@ -1,9 +1,9 @@
 package com.github.yusufyilmazfr.podcast4j.response
 
-import com.fasterxml.jackson.annotation.JsonProperty
 import com.github.yusufyilmazfr.podcast4j.entity.SoundBite
+import com.google.gson.annotations.SerializedName
 
 data class SoundBiteResponse(
-    @field:JsonProperty("items")
+    @SerializedName("items")
     val soundBites: MutableList<SoundBite>? = null
 ) : BaseResponse()
